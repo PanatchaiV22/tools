@@ -13,7 +13,12 @@ const htmlmin = require('gulp-htmlmin');
 const merge = require('merge-stream');
 const postcss = require('gulp-html-postcss');
 const rename = require('gulp-rename');
-const sass = require('gulp-sass');
+// const sass = require('gulp-sass');
+// fix gulp serve error
+// gulp-sass no longer has a defult Sass compiler; please set one yourself.
+// Both the "sass" and "node-sass" packages are permitted.
+// For example, in your gulpfile:
+const sass = require('gulp-sass')(require('sass'));
 const through = require('through2');
 const useref = require('gulp-useref');
 const vulcanize = require('gulp-vulcanize');

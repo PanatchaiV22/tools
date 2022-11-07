@@ -47,29 +47,32 @@ $color-weave-green: #0f9d58;
 /* Mixins */
 
 @mixin codelab-card($categories, $color, $icon) {
-  %bg-#{$color} {
+  $stripped-color: str-slice(inspect($color), 2);
+  $stripped-svg: str-slice($icon, 1, -5);
+
+  %bg-#{$stripped-color} {
     background-color: $color;
   }
 
-  %border-#{$color} {
+  %border-#{$stripped-color} {
     border-bottom-color: $color;
   }
 
-  %icon-#{$icon} {
+  %icon-#{$stripped-svg} {
     background-image: url('/images/icons/#{$icon}');
   }
 
   @each $category in $categories {
     .codelab-card.category-#{$category} {
-      @extend %border-#{$color};
+      @extend %border-#{$stripped-color};
     }
 
     .#{$category}-bg {
-      @extend %bg-#{$color};
+      @extend %bg-#{$stripped-color};
     }
 
     .#{$category}-icon {
-      @extend %icon-#{$icon};
+      @extend %icon-#{$stripped-svg};
     }
   }
 }
